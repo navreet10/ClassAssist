@@ -5,7 +5,13 @@
 $(document).ready(function() {
 
 	$('#average').click(function(event) {
-		var dataString ='student='+ $("#student").val()+ '&type=' + $("#type").val();;
+		if ( ( $("#student").val() == null || $("#student").val() == "") 
+				&& ( $("#type").val()== null || $("#type").val() == "")){
+			
+			alert("Enter either a Student ID or type of Assignment or both.")
+			return;
+		}
+		var dataString ='student='+ $("#student").val()+ '&type=' + $("#type").val();
 		$.ajax({
 			type : "POST",
 			url : "Average",
@@ -30,6 +36,10 @@ $(document).ready(function() {
 
 	});
 	$('#highLow').click(function(event) {
+		if ($("#type").val()== null || $("#type").val() == "") {
+			alert("Type of Assignment not specified.")
+			return;
+		}
 		var dataString ='student='+ $("#student").val()+ '&type=' + $("#type").val();;
 		$.ajax({
 			type : "POST",

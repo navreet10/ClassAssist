@@ -25,6 +25,7 @@ public class Dao {
             result = query.getResultList();
 
         }catch (Exception e){
+        	e.printStackTrace();
             return null;
         }
         finally{
@@ -45,6 +46,7 @@ public class Dao {
             result = query.getResultList();
 
         }catch (Exception e){
+        	e.printStackTrace();
             return null;
         }
         finally{
@@ -65,6 +67,7 @@ public class Dao {
             result = query.getResultList();
 
         }catch (Exception e){
+        	e.printStackTrace();
             return null;
         }
         finally{
@@ -85,6 +88,7 @@ public class Dao {
             result = query.getResultList();
 
         }catch (Exception e){
+        	e.printStackTrace();
             return null;
         }
         finally{
@@ -102,6 +106,7 @@ public class Dao {
             trans.commit();
         } catch (Exception e) {
             trans.rollback();
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -122,6 +127,7 @@ public class Dao {
             result = (Double) results[0];
 
         }catch (Exception e){
+        	e.printStackTrace();
         	 return null;
         }
         finally{
@@ -142,6 +148,7 @@ public class Dao {
             result = (Double) results[0];
 
         }catch (Exception e){
+        	e.printStackTrace();
         	 return null;
         }
         finally{
@@ -169,6 +176,7 @@ public class Dao {
             result = (Double) results[0];
 
         }catch (Exception e){
+        	e.printStackTrace();
             return null;
         }
         finally{
@@ -194,6 +202,7 @@ EntityManager em = DBUtil.getEmfFactory().createEntityManager();
             result = (BigDecimal) results[0];
 
         }catch (Exception e){
+        	e.printStackTrace();
         	 return null;
         }
         finally{
@@ -219,6 +228,7 @@ EntityManager em = DBUtil.getEmfFactory().createEntityManager();
             result = (BigDecimal) results[0];
 
         }catch (Exception e){
+        	e.printStackTrace();
         	 return null;
         }
         finally{
