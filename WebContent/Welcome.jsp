@@ -15,20 +15,111 @@
 <!-- jQuery library -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <script src="javascripts/filter.js"></script>
+
 <!-- Latest compiled JavaScript -->
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- <link rel="stylesheet" href="css/style.css" /> -->
+
+<link rel="stylesheet" href="css/styleC.css" />
+
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+	href="https://jqueryui.com/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<style>
+#draggable {
+	width: 0px;
+	height: 0px;
+	padding: 0em;
+}
+
+#resizable {
+	width: 150px;
+	height: 150px;
+	padding: 0.5em;
+}
+
+#resizable h3 {
+	text-align: center;
+	margin: 0;
+}
+
+#red, #green, #blue {
+	float: left;
+	clear: left;
+	width: 300px;
+	margin: 15px;
+}
+
+#swatch {
+	width: 120px;
+	height: 100px;
+	margin-top: 18px;
+	margin-left: 350px;
+	background-image: none;
+}
+
+#red .ui-slider-range {
+	background: #ef2929;
+}
+
+#red .ui-slider-handle {
+	border-color: #ef2929;
+}
+
+#green .ui-slider-range {
+	background: #8ae234;
+}
+
+#green .ui-slider-handle {
+	border-color: #8ae234;
+}
+
+#blue .ui-slider-range {
+	background: #729fcf;
+}
+
+#blue .ui-slider-handle {
+	border-color: #729fcf;
+}
+</style>
 <title>Welcome</title>
 </head>
-<body>
+<body id ="body" class="ui-widget-content" style="border: 0;">
+
 	<div class="container">
 
 		<br> <br>
 		<jsp:include page="NavBar.jsp" />
 
 		<div style="background-color: white;" class="panel-body">
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-6">
+					<p class="ui-state-default ui-corner-all ui-helper-clearfix"
+						style="padding: 4px;">
+						<span class="ui-icon ui-icon-pencil"
+							style="float: left; margin: -2px 5px 0 0;"></span> Pick
+						Background
+					</p>
+
+					<div id="red"></div>
+					<div id="green"></div>
+					<div id="blue"></div>
+
+					<div id="swatch" class="ui-widget-content ui-corner-all"></div>
+				</div>
+				<div class="col-sm-4"><div id="draggable" class="ui-widget-content">
+							<img src="images/shin.jpeg" alt="Drag Me" />
+						</div></div>
+			</div>
+
+
+
 			<c:set var="mes" scope="session" value="${message}" />
 			<c:if test="${mes != null}">
 				<div class="alert alert-success">
@@ -36,39 +127,53 @@
 				</div>
 			</c:if>
 			<form id="target" action="Insert" method="post">
-			
-			<div class="row">
-				<div class="col-sm-2"></div>
+
+				<div class="row">
+					<div class="col-sm-2">
+						
+					</div>
 					<div class="col-sm-8">
 						<h2>Welcome Professor!!</h2>
 						<br> <br>
 						<c:set var="res" scope="session" value="${result}" />
 						<c:if test="${res != null}">
-							<h2>Results:</h2>
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Student ID</th>
-										<th>Assignment Name</th>
-										<th>Assignment Type</th>
-										<th>Assignment date</th>
-										<th>Grade</th>
-									</tr>
-								</thead>
+							<div id="accordion">
+								<h3>Results:</h3>
+								<div>
 
-								<tbody>
-									<c:forEach var="result" items="${result}">
-										<tr>
-											<td>${result.studentId}</td>
-											<td>${result.assignmentName}</td>
-											<td>${result.typeassignment.type}</td>
-											<td>${result.assdate}</td>
-											<td>${result.grade}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Student ID</th>
+												<th>Assignment Name</th>
+												<th>Assignment Type</th>
+												<th>Assignment date</th>
+												<th>Grade</th>
+											</tr>
+										</thead>
 
+										<tbody>
+											<c:forEach var="result" items="${result}">
+												<tr>
+													<td>${result.studentId}</td>
+													<td>${result.assignmentName}</td>
+													<td>${result.typeassignment.type}</td>
+													<td>${result.assdate}</td>
+													<td>${result.grade}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<h3>Random:</h3>
+								<div>
+									<p>Mauris mauris ante, blandit et, ultrices a, suscipit
+										eget, quam. Integer ut neque. Vivamus nisi metus, molestie
+										vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec
+										suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur
+										malesuada. Vestibulum a velit eu ante scelerisque vulputate.</p>
+								</div>
+							</div>
 						</c:if>
 						<c:set var="avg" scope="session" value="${average}" />
 						<c:if test="${avg != null}">
@@ -82,42 +187,50 @@
 							Highest Score is: <c:out value="${high}"></c:out>
 							Minimum Score is: <c:out value="${low}"></c:out>
 						</c:if>
-						<br>
-						<br> 
+						<br> <br>
 						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<div align="left">Insert New user</div>
 
 							</div>
 							<div class="panel-body">
-								<div class="form-group">
-								 <label for="studentId">Student ID:</label>
-									<input type="text" class="form-control" id="studentId" name="studentId" value=""> 
+								<div class="form-gr$('#date').datepicker(oup">
+									<label for="studentId">Student ID:</label> <input type="text"
+										class="form-control" id="studentId" name="studentId" value="">
 								</div>
 								<div class="form-group">
-								<label for="typeAssgn">Assignment type:</label>
-								<input type="text" id="typeAssgn" name="typeAssgn" value="" class="form-control"> 
+									<label for="typeAssgn">Assignment type:</label> <input
+										type="text" id="typeAssgn" name="typeAssgn" value=""
+										class="form-control">
 								</div>
 								<div class="form-group">
-								<label for="assgnName">Assignment Name:</label>
-								<input
-									type="text" id="assgnName" name="assgnName" value="" class="form-control"> 
+									<label for="assgnName">Assignment Name:</label> <input
+										type="text" id="assgnName" name="assgnName" value=""
+										class="form-control">
 								</div>
 								<div class="form-group">
-								<label for="date">Date of Assignment(MM/dd/yyyy):</label>
-								<input type="text"
-									id="date" name="date" value="" class="form-control">
+									<label for="date">Date of Assignment(MM/dd/yyyy):</label>
+									<div>
+										<p>
+											<input type="text" id="datepicker" name="datepicker" value=""
+												class="form-control">
+										</p>
+									</div>
+									<!-- <script>
+										jQuery(function() {
+											jQuery("#datepicker").datepicker();
+										});
+									</script> -->
 								</div>
 								<div class="form-group">
-								<label for="grade">Grade:</label>
-								<input type="text" id="grade" name="grade" value="" class="form-control">
+									<label for="grade">Grade:</label> <input type="text" id="grade"
+										name="grade" value="" class="form-control">
 								</div>
 							</div>
 							<div class="panel-footer">
 								<div id="text"></div>
 								<div align="right">
-									 <input type="submit"
-									id="submit" value="Insert">
+									<input type="submit" id="submit" value="Insert">
 								</div>
 							</div>
 						</div>
@@ -129,38 +242,37 @@
 							</div>
 							<div class="panel-body">
 								<div class="form-group">
-								<label for="student">Student ID:</label>
-								<input type="text" id="student" name="student" value="" class="form-control"> 
+									<label for="student">Student ID:</label> <input type="text"
+										id="student" name="student" value="" class="form-control">
 								</div>
 								<div class="form-group">
-								<label for="type">Assignment Type:</label>
-								<input type="text" id="type" name="type" value="" class="form-control"> 
+									<label for="type">Assignment Type:</label> <input type="text"
+										id="type" name="type" value="" class="form-control">
 								</div>
 							</div>
 							<div class="panel-footer">
 								<div id="text"></div>
 								<div align="right">
-									<input
-									type="button" id="average" name="average" value="Average">
-								<input type="button" id="assignments" name="assignments"
-									value="Assignments"> 
-								<input type="button" id="highLow"
-									name="highLow" value="High Low Score">
+									<input type="button" id="average" name="average"
+										value="Average"> <input type="button" id="assignments"
+										name="assignments" value="Assignments"> <input
+										type="button" id="highLow" name="highLow"
+										value="High Low Score">
 								</div>
 							</div>
 						</div>
 						<br> <br>
-						
+
 					</div>
 					<div class="col-sm-2"></div>
-			</div>
+				</div>
 			</form>
 
 
 		</div>
 
 	</div>
-	
+
 
 	<%-- <form id="target" action="Insert" method="post">
 		<a href="<%=request.getContextPath()%>/Logout"><span

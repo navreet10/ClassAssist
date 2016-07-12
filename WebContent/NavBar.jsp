@@ -1,16 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Case</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-</head>
-<body>
+
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -33,19 +21,10 @@
     
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome Professor </a></li>
       <li><a href="<%=request.getContextPath()%>/Logout"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
-     <!--  <li><form action="Search" class="search-form">
-                <div class="form-group has-feedback">
-            		<label for="search" class="sr-only">Search</label>
-            		<input type="text" class="form-control" name="search" id="search" placeholder="search">
-              		<span class="glyphicon glyphicon-search form-control-feedback"></span>
-            	</div>
-            </form></li> -->
+    
       
     </ul>
   </div>
 </nav>
   
 
-
-</body>
-</html>
